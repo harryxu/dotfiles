@@ -1,0 +1,45 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+#
+export PATH=~/bin:~/opt/bin:~/go/bin:/usr/local/opt/mysql-client/bin::$PATH
+
+# autojump
+if [ $commands[autojump] ]; then # check if autojump is installed
+  if [ -f $HOME/.autojump/etc/profile.d/autojump.zsh ]; then # manual user-local installation
+    . $HOME/.autojump/etc/profile.d/autojump.zsh
+  elif [ -f $HOME/.autojump/share/autojump/autojump.zsh ]; then # another manual user-local installation
+    . $HOME/.autojump/share/autojump/autojump.zsh
+  elif [ -f $HOME/.nix-profile/etc/profile.d/autojump.zsh ]; then # nix installation
+    . $HOME/.nix-profile/etc/profile.d/autojump.zsh
+  elif [ -f /run/current-system/sw/share/autojump/autojump.zsh ]; then # nixos installation
+    . /run/current-system/sw/share/autojump/autojump.zsh
+  elif [ -f /usr/share/autojump/autojump.zsh ]; then # debian and ubuntu package
+    . /usr/share/autojump/autojump.zsh
+  elif [ -f /etc/profile.d/autojump.zsh ]; then # manual installation
+    . /etc/profile.d/autojump.zsh
+  elif [ -f /etc/profile.d/autojump.sh ]; then # gentoo installation
+    . /etc/profile.d/autojump.sh
+  elif [ -f /usr/local/share/autojump/autojump.zsh ]; then # freebsd installation
+    . /usr/local/share/autojump/autojump.zsh
+  elif [ -f /opt/local/etc/profile.d/autojump.sh ]; then # mac os x with ports
+    . /opt/local/etc/profile.d/autojump.sh
+  elif [ $commands[brew] -a -f `brew --prefix`/etc/autojump.sh ]; then # mac os x with brew
+    . `brew --prefix`/etc/autojump.sh
+  fi
+fi
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
