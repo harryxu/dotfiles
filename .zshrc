@@ -14,6 +14,11 @@ fi
 #
 export PATH=~/bin:~/opt/bin:~/go/bin:/usr/local/opt/mysql-client/bin::$PATH
 
+# php path installed by https://php-osx.liip.ch
+if [ -d /usr/local/php5/bin ]; then
+  export PATH=/usr/local/php5/bin:$PATH
+fi
+
 # autojump
 if [ $commands[autojump] ]; then # check if autojump is installed
   if [ -f $HOME/.autojump/etc/profile.d/autojump.zsh ]; then # manual user-local installation
