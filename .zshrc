@@ -12,7 +12,7 @@ fi
 
 # Customize to your needs...
 #
-export PATH=~/bin:~/opt/bin:~/go/bin:/usr/local/opt/mysql-client/bin::$PATH
+export PATH=~/bin:~/opt/bin:~/go/bin::$PATH
 
 # autojump
 if [ $commands[autojump] ]; then # check if autojump is installed
@@ -43,3 +43,19 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# flutter
+if [ -d ~/dev/data/flutter/bin ]; then
+    export PATH=$PATH::~/dev/data/flutter/bin
+fi
+
+# mysql client
+if [ -d /usr/local/opt/mysql-client/bin ]; then
+    export PATH=$PATH::/usr/local/opt/mysql-client/bin
+fi
+
